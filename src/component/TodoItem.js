@@ -1,9 +1,13 @@
 import TodoContent from './TodoContent';
 
-function TodoItem() {
+function TodoItem(props) {
   return (
-    <li className='list-group-item p-3 callout-warning'>
-      <TodoContent />
+    <li
+      className={`list-group-item p-3 callout-${
+        props.item.completed ? 'success' : 'warning'
+      }`}
+    >
+      <TodoContent item={props.item} />
     </li>
   );
 }
