@@ -1,4 +1,9 @@
-import { CREATE_TODO, DELETE_TODO, LOAD_TODO } from '../actions/todoAction';
+import {
+  CREATE_TODO,
+  DELETE_TODO,
+  LOAD_TODO,
+  UPDATE_TODO,
+} from '../actions/todoAction';
 
 const initialTodoState = {
   todos: [],
@@ -29,6 +34,15 @@ function todoReducer(state, action) {
       const todos = [action.payload.todo, ...state.todos];
       return { ...state, todos };
     }
+    case UPDATE_TODO: {
+      return {
+        ...state,
+        todos: state.todos.map((item) =>
+          action.payload.todo.id === item.id ? action.payload.todo : item
+        ),
+      };
+    }
+
     default:
       return state;
   }
